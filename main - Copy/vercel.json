@@ -1,18 +1,28 @@
 {
+  "build": {
+    "env": {
+      "VERCEL_BUILD_STEP": "echo 'Skipping default build for PHP'",
+      "VERCEL_INSTALL_STEP": "echo 'Skipping default install for PHP'"
+    }
+  },
   "functions": {
     "index.php": {
       "runtime": "vercel-php@0.6.0",
       "includeFiles": [
-        "includes/**", 
+        "includes/**",
         "api/**",
         "calendar/**",
         "images/**",
         "merchandise/**",
         "post/**"
-      ]        
+      ]
     }
   },
   "routes": [
+    {
+      "src": "/(.*)",
+      "handle": "filesystem"
+    },
     {
       "src": "/(.*)",
       "dest": "/index.php"
